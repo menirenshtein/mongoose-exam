@@ -85,25 +85,25 @@ const addGrade = async (req: Request, res: Response) => {
   // }
 };
 
-// const updateGrade = async (req: Request, res: Response) => {
-//   try {
-//     const { points, comment } = req.body.newGrade;
-//     const student = await Student.findOne({ 'grades._id': req.params.grade_id });
+const updateGrade = async (req: Request, res: Response) => {
+  // try {
+  //   const { points, comment } = req.body.newGrade;
+  //   const student = await Student.findOne({ 'grades._id': req.params.grade_id });
 
-//     if (!student) return res.status(404).json({ message: 'Grade not found' });
+  //   if (!student) return res.status(404).json({ message: 'Grade not found' });
 
-//     const classroom = await Classroom.findOne({ students: student._id, admin: req.user.id });
-//     if (!classroom) return res.status(403).json({ message: 'Access denied' });
+  //   const classroom = await Classroom.findOne({ students: student._id, admin: req.user.id });
+  //   if (!classroom) return res.status(403).json({ message: 'Access denied' });
 
-//     const grade = student.grades.id(req.params.grade_id);
-//     grade.comment = comment;
-//     grade.points = points;
-//     await student.save();
-//     res.status(200).json({ student });
-//   } catch (error) {
-//     res.status(500).json({ message: 'Server error' });
-//   }
-// };
+  //   const grade = student.grades.id(req.params.grade_id);
+  //   grade.comment = comment;
+  //   grade.points = points;
+  //   await student.save();
+  //   res.status(200).json({ student });
+  // } catch (error) {
+  //   res.status(500).json({ message: 'Server error' });
+  // }
+};
 
 // const getAverageGrade = async (req: Request, res: Response) => {
 //   try {

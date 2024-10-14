@@ -5,6 +5,7 @@ import jwt from 'jsonwebtoken';
 import { IUser } from '../types/user.js';
 import Classroom from '../models/classroomModel.js';
 import { IClassroom } from '../types/classroom.js';
+import Student from '../models/studentModel.js';
 
 export const login = async (req: Request, res: Response): Promise<void> => {
   try {
@@ -42,13 +43,19 @@ export const register = async (req: Request, res: Response): Promise<void> => {
     const hashedPassword: string = await bcrypt.hash(password, 10);
     const user: IUser = new User({ userName, email, password: hashedPassword, isAdmin });
     await user.save();  
-    console.log(user)
     if (isAdmin) {
       const newClassroom = new Classroom({
         user_id: user._id,
         name: classroom,
       });
       await newClassroom.save();
+    }
+    else{
+      const newStudent = new Student({
+        name: userName,
+        classroom
+      })
+      await newStudent.save()
     }
 
     const token = jwt.sign({ id: user._id, isAdmin: user.isAdmin }, process.env.JWT_SECRET!);

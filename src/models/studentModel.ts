@@ -6,15 +6,17 @@ import Classroom from "./classroomModel";
 
    
 const StudentSchema: Schema = new Schema({
-    name: {
-      type: String,
-      required: true
-    },
-    classroom: {
-      type: String
-    },
-    grades: [GradeSchema] 
-        
+  name: {
+    type: String,
+    required: true
+  },
+  classroom: {
+    type: String
+  },
+  grades: {
+    type:Types.ObjectId,
+    ref: 'Grade'
+  }
 });
 
 
